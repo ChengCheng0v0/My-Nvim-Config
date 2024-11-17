@@ -27,7 +27,7 @@ vim.opt.signcolumn = "auto"
 vim.o.scrolloff = 3
 
 -- 分割线填充
-vim.o.fillchars = "vert:│,horiz:━,horizup:┯,horizdown:┷"
+vim.o.fillchars = "vert:|,horiz:-,horizup:+,horizdown:+"
 
 -- 垂直分割线颜色
 vim.cmd([[highlight WinSeparator guifg=#181825]])
