@@ -24,4 +24,7 @@ vim.g.minimap_auto_start = 0 -- 默认隐藏
 -- Git Blame
 vim.g.gitblame_display_virtual_text = 0 -- 隐藏虚拟文本
 vim.g.gitblame_delay = 0 -- 信息显示的视觉延迟
+vim.g.gitblame_date_format = "%r" -- 使用相对时间
+vim.g.gitblame_message_when_not_committed = "Oh please, commit this!" -- 自定义未提交时的消息
+vim.g.gitblame_max_commit_summary_length = 50 -- 最大 Commit 摘要长度
 

@@ -26,7 +26,7 @@
 - E: null
 - F: null
 - -
-- U: null
+- U: Git Blame
 - V: null
 - W: null
 
@@ -34,16 +34,16 @@
 - B: 文件名
 - C: "(＠_＠;)", Git 分支, Git 差异
 - -
-- X: Git Blame, LSP 检查, 文件编码, 文件大小, 文件语言
+- X: LSP 检查, 文件编码, 文件大小, 文件语言
 - Y: 光标所在进度
 - Z: 光标所在位置
 
 --]]
 
 
-local git_blame = require "gitblame"
+local git_blame = require("gitblame")
 
-require("lualine").setup {
+require("lualine").setup({
     options = {
         icons_enabled = true,
         theme = "auto",
@@ -59,7 +59,7 @@ require("lualine").setup {
             statusline = {},
             winbar = {},
         },
-        ignore_focus = {},
+        ignore_focus = { "neo-tree", "minimap" },
         always_divide_middle = true,
         always_show_tabline = true,
         globalstatus = true,
@@ -101,10 +101,6 @@ require("lualine").setup {
             "diff",
         },
         lualine_x = {
-            {
-                git_blame.get_current_blame_text,
-                cond = git_blame.is_blame_text_available,
-            },
             "diagnostics",
             "encoding",
             "filesize",
@@ -146,8 +142,8 @@ require("lualine").setup {
         lualine_a = {
             {
                 "tabs",
-                mode = 1;
-                path = 0;
+                mode = 1,
+                path = 0,
             },
         },
         lualine_b = {},
@@ -160,8 +156,24 @@ require("lualine").setup {
             end,
         },
     },
-    winbar = {},
+    winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {
+            {
+                git_blame.get_current_blame_text,
+                icon = {
+                    "", align="right",
+                },
+
+                cond = git_blame.is_blame_text_available,
+            },
+        },
+        lualine_y = {},
+        lualine_z = {},
+    },
     inactive_winbar = {},
     extensions = {},
-}
+})
 
