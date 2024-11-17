@@ -144,6 +144,17 @@ require("lualine").setup({
                 "tabs",
                 mode = 1,
                 path = 0,
+                tabs_color = {
+                    active = {
+                        fg = "#181825",
+                        bg = "#f5c2e7",
+                        gui = "bold",
+                    },
+                    inactive = {
+                        fg = "#f5c2e7",
+                        bg = "#181825",
+                    },
+                },
             },
         },
         lualine_b = {},
