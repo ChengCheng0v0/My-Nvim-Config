@@ -8,7 +8,7 @@ vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undo") -- 设置撤销文�
 vim.opt.ignorecase = true -- 大小写始终不敏感
 vim.opt.smartcase = true -- 智能模式 (有大写时敏感，否则不敏感)
 
----- 界面
+---- 外观
 
 -- 启用终端中的 24 位颜色支持
 vim.opt.termguicolors = true
@@ -27,13 +27,7 @@ vim.opt.signcolumn = "auto"
 vim.o.scrolloff = 3
 
 -- 分割线填充
-vim.o.fillchars = "vert:|,horiz:-,horizup:+,horizdown:+"
-
--- 垂直分割线颜色
-vim.cmd([[highlight WinSeparator guifg=#181825]])
-
--- 水平分割线颜色
-vim.cmd([[highlight VertSplit guifg=#181825]])
+vim.o.fillchars = "vert:│,horiz:─"
 
 ---- 编辑
 

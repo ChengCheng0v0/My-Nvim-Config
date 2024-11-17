@@ -7,5 +7,6 @@ require("core.options")   -- ./core/options.lua   -- 基本选项
 require("plugins.init")   -- ./plugins/init.lua   -- 插件
 require("core.keymaps")   -- ./core/keymaps.lua   -- 键位绑定
 require("autotasks.init") -- ./autotasks/init.lua -- 自动任务
+require("core.highlight") -- ./core/highlight     -- 高亮
 require("core.workspace") -- ./core/workspace     -- 工作区
 
