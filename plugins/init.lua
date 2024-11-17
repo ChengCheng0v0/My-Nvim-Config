@@ -19,7 +19,7 @@ vim.call("plug#begin")
     Plug ("ms-jpq/coq.artifacts")
     Plug ("ms-jpq/coq.thirdparty")
 --    Plug ("echasnovski/mini.animate")
-    Plug ("akinsho/toggleterm.nvim")
+--    Plug ("akinsho/toggleterm.nvim")
 vim.call("plug#end")
 
 -- 加载插件选项
@@ -38,7 +38,7 @@ local neo_tree_config = require("plugins.neotree").config -- ./neotree.lua -- Ne
 require("kitty-scrollback").setup() -- Kitty Scrollback
 require("lualine").setup()          -- Lualine
 require("colorizer").setup()        -- Colorizer
-require("toggleterm").setup()       -- ToggleTerm
+--require("toggleterm").setup()       -- ToggleTerm
 
 -- 应用插件配置 (选项式)
 require("neo-tree").setup(neo_tree_config)
