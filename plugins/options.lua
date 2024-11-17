@@ -21,3 +21,7 @@ vim.g.ale_fixers = { -- 指定各语言使用的修复工具
 -- Minimap
 vim.g.minimap_auto_start = 0 -- 默认隐藏
 
+-- Git Blame
+vim.g.gitblame_display_virtual_text = 0 -- 隐藏虚拟文本
+vim.g.gitblame_delay = 0 -- 信息显示的视觉延迟
+
