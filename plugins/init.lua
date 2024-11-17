@@ -4,6 +4,7 @@ local Plug = vim.fn["plug#"]
 vim.call("plug#begin")
     Plug ("nvim-lua/plenary.nvim")
     Plug ("MunifTanjim/nui.nvim")
+    Plug ("lambdalisue/suda.vim")
     Plug ("nvim-tree/nvim-web-devicons")
     Plug ("catppuccin/nvim")
     Plug ("nvim-treesitter/nvim-treesitter")

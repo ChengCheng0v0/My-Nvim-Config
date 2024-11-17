@@ -19,8 +19,8 @@
 - I: null
 - -
 - R: null
-- S: null
-- T: 当前根目录 (pwd)
+- S: 用户名和主机名
+- T: 当前根目录
 
 - D: null
 - E: null
@@ -160,10 +160,14 @@ require("lualine").setup({
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
+        lualine_y = {
+            function()
+                return io.popen("echo \"$USER@$(hostname)\""):read("*a"):gsub("%s+$", "")
+            end,
+        },
         lualine_z = {
             function()
-                return " [" .. vim.fn.getcwd() .. "]"
+                return vim.fn.getcwd()
             end,
         },
     },
