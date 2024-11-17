@@ -55,10 +55,10 @@ vim.api.nvim_set_keymap("i", "<A-k>", "<Down>", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("i", "<A-j>", "<Left>", { noremap = true, silent = true })  -- 左
 vim.api.nvim_set_keymap("i", "<A-l>", "<Right>", { noremap = true, silent = true }) -- 右
 
--- 普通模式下按 Alt + j 移动到上一个单词头部
-vim.api.nvim_set_keymap("n", "<A-j>", "b", { noremap = true, silent = true })
--- 普通模式下按 Alt + l 移动到下一个单词尾部
-vim.api.nvim_set_keymap("n", "<A-l>", "e", { noremap = true, silent = true })
+-- 普通模式下按 Alt + j 快速向左移动光标
+vim.api.nvim_set_keymap("n", "<A-j>", "3<Left>", { noremap = true, silent = true })
+-- 普通模式下按 Alt + l 快速向右移动光标
+vim.api.nvim_set_keymap("n", "<A-l>", "3<Right>", { noremap = true, silent = true })
 
 -- 普通模式下按 Alt + i 向上滚动视图
 vim.api.nvim_set_keymap("n", "<A-i>", "3<C-y>", { noremap = true, silent = true })
