@@ -26,8 +26,8 @@
 - E: null
 - F: null
 - -
-- U: Git Blame
-- V: null
+- U: null
+- V: Git Blame
 - W: null
 
 - A: 当前模式
@@ -160,17 +160,19 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = {},
-        lualine_x = {
+        lualine_x = {},
+        lualine_y = {
             {
-                git_blame.get_current_blame_text,
+                function()
+                    return string.gsub(git_blame.get_current_blame_text(), "^%s+", "")
+                end,
                 icon = {
-                    "", align="right",
+                    "", align="left",
                 },
 
                 cond = git_blame.is_blame_text_available,
             },
         },
-        lualine_y = {},
         lualine_z = {},
     },
     inactive_winbar = {},
