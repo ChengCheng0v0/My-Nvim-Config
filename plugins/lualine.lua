@@ -1,3 +1,46 @@
+--[[
+
++-------------------------------------------------+
+| G | H | I                             R | S | T |
++-------------------------------------------------+
++-------------------------------------------------+
+| D | E | F                             U | V | W |
++-------------------------------------------------+
+
+
++-------------------------------------------------+
+| A | B | C                             X | Y | Z |
++-------------------------------------------------+
+
+---------------------------------------------------
+
+- G: 可用标签页
+- H: null
+- I: null
+- -
+- R: null
+- S: null
+- T: 当前根目录 (pwd)
+
+- D: null
+- E: null
+- F: null
+- -
+- U: null
+- V: null
+- W: null
+
+- A: 当前模式
+- B: 文件名
+- C: "(＠_＠;)", Git 分支, Git 差异
+- -
+- X: Git Blame, LSP 检查, 文件编码, 文件大小, 文件语言
+- Y: 光标所在进度
+- Z: 光标所在位置
+
+--]]
+
+
 local git_blame = require "gitblame"
 
 require("lualine").setup {
@@ -56,16 +99,13 @@ require("lualine").setup {
             },
             "branch",
             "diff",
+        },
+        lualine_x = {
             {
                 git_blame.get_current_blame_text,
                 cond = git_blame.is_blame_text_available,
             },
-        },
-        lualine_x = {
             "diagnostics",
-            function()
-                return " [" .. vim.fn.getcwd() .. "]"
-            end,
             "encoding",
             "filesize",
             {
@@ -102,7 +142,24 @@ require("lualine").setup {
         lualine_y = {},
         lualine_z = {},
     },
-    tabline = {},
+    tabline = {
+        lualine_a = {
+            {
+                "tabs",
+                mode = 1;
+                path = 0;
+            },
+        },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {
+            function()
+                return " [" .. vim.fn.getcwd() .. "]"
+            end,
+        },
+    },
     winbar = {},
     inactive_winbar = {},
     extensions = {},
