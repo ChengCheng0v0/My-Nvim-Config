@@ -179,14 +179,26 @@ require("lualine").setup({
         lualine_c = {},
         lualine_x = {},
         lualine_y = {
-            function()
-                return io.popen("echo \"$USER@$(hostname)\""):read("*a"):gsub("%s+$", "")
-            end,
+            {
+                function()
+                    return io.popen('echo "$USER@$(hostname)"'):read("*a"):gsub("%s+$", "")
+                end,
+                color = {
+                    fg = _G.palette.pink,
+                    bg = _G.palette.surface0,
+                },
+            },
         },
         lualine_z = {
-            function()
-                return vim.fn.getcwd()
-            end,
+            {
+                function()
+                    return vim.fn.getcwd()
+                end,
+                color = {
+                    fg = _G.palette.mantle,
+                    bg = _G.palette.pink,
+                },
+            },
         },
     },
     winbar = {
@@ -202,14 +214,15 @@ require("lualine").setup({
                     end
                 end,
                 icon = {
-                    "", align="left",
+                    "",
+                    align = "left",
                 },
                 color = {
                     fg = "#ffffff",
                     bg = "#cb1b45",
                     gui = "bold",
-                }
-            }
+                },
+            },
         },
         lualine_c = {},
         lualine_x = {},
@@ -219,7 +232,12 @@ require("lualine").setup({
                     return string.gsub(git_blame.get_current_blame_text(), "^%s+", "")
                 end,
                 icon = {
-                    "", align="left",
+                    "",
+                    align = "left",
+                },
+                color = {
+                    fg = _G.palette.red,
+                    bg = _G.palette.surface0,
                 },
 
                 cond = git_blame.is_blame_text_available,
