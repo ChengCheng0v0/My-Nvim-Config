@@ -34,7 +34,7 @@
 - B: 文件名
 - C: "(＠_＠;)", Git 分支, Git 差异
 - -
-- X: LSP 检查, 文件编码, 文件大小, 文件语言
+- X: LSP 检查, 文档字数, 文件编码, 文件大小, 文件语言
 - Y: 光标所在进度
 - Z: 光标所在位置
 
@@ -101,6 +101,25 @@ require("lualine").setup({
         },
         lualine_x = {
             "diagnostics",
+            {
+                function()
+                    local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+                    local word_count = #content:gsub("%s", "")
+                    return word_count
+                end,
+
+                cond = function()
+                    local file_type = vim.opt_local.filetype:get()
+                    local count = {
+                        latex = true,
+                        tex = true,
+                        text = true,
+                        markdown = true,
+                        vimwiki = true,
+                    }
+                    return count[file_type] ~= nil
+                end,
+            },
             "encoding",
             "filesize",
             {
