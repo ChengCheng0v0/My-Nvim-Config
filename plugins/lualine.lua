@@ -23,7 +23,7 @@
 - T: 当前根目录
 
 - D: null
-- E: null
+- E: 录制信息
 - F: null
 - -
 - U: null
@@ -39,7 +39,6 @@
 - Z: 光标所在位置
 
 --]]
-
 
 local git_blame = require("gitblame")
 
@@ -173,7 +172,26 @@ require("lualine").setup({
     },
     winbar = {
         lualine_a = {},
-        lualine_b = {},
+        lualine_b = {
+            {
+                function()
+                    local rec_register = vim.fn.reg_recording()
+                    if rec_register ~= "" then
+                        return "Recording @" .. rec_register
+                    else
+                        return ""
+                    end
+                end,
+                icon = {
+                    "", align="left",
+                },
+                color = {
+                    fg = "#ffffff",
+                    bg = "#cb1b45",
+                    gui = "bold",
+                }
+            }
+        },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {
