@@ -140,6 +140,9 @@ neo_tree_config.window.mappings = {
 vim.g.winbar_visible = true
 vim.api.nvim_set_keymap("n", "'", [[:lua vim.g.winbar_visible = not vim.g.winbar_visible require("lualine").hide({ place = { "winbar" }, unhide = vim.g.winbar_visible })<CR>]], { noremap = true, silent = true })
 
+-- 普通模式下按 " 显示/隐藏 Git Blame 信息
+vim.api.nvim_set_keymap("n", "\"", ":GitBlameToggle<CR>", { noremap = true, silent = true })
+
 -- 普通模式下按 \ 显示/隐藏 Minimap
 vim.api.nvim_set_keymap("n", "\\", ":MinimapToggle<CR>", { noremap = true, silent = true })
 
