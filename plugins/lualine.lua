@@ -145,13 +145,13 @@ require("lualine").setup({
                 path = 0,
                 tabs_color = {
                     active = {
-                        fg = "#181825",
-                        bg = "#f5c2e7",
+                        fg = _G.palette.mantle,
+                        bg = _G.palette.pink,
                         gui = "bold",
                     },
                     inactive = {
-                        fg = "#f5c2e7",
-                        bg = "#181825",
+                        fg = _G.palette.pink,
+                        bg = _G.palette.mantle,
                     },
                 },
             },
