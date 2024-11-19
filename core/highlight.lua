@@ -7,8 +7,10 @@ vim.call("plug#end")
 
 -- 设置风格
 require("catppuccin").setup({ flavour = "mocha" }) -- 可选 "latte", "frappe", "macchiato", "mocha"
+
 -- 全局调色板
 _G.palette = require("catppuccin.palettes").get_palette("mocha")
+
 -- 应用主题
 vim.cmd.colorscheme("catppuccin")
 

@@ -6,6 +6,7 @@ vim.call("plug#begin")
     Plug ("MunifTanjim/nui.nvim")
     Plug ("lambdalisue/suda.vim")
     Plug ("nvim-tree/nvim-web-devicons")
+    Plug ("catppuccin/nvim")                    -- 再次声明以确保其作用域
     Plug ("nvim-treesitter/nvim-treesitter")
     Plug ("dense-analysis/ale")
     Plug ("wakatime/vim-wakatime")
