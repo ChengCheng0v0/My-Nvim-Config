@@ -20,8 +20,7 @@ vim.call("plug#begin")
     Plug ("ms-jpq/coq_nvim")
     Plug ("ms-jpq/coq.artifacts")
     Plug ("ms-jpq/coq.thirdparty")
---    Plug ("echasnovski/mini.animate")
---    Plug ("akinsho/toggleterm.nvim")
+    Plug ("chentoast/marks.nvim")
 vim.call("plug#end")
 
 -- 加载插件选项
@@ -31,19 +30,19 @@ require("plugins.options") -- ./options.lua
 require("plugins.lualine")          -- ./lualine.lua          -- Lualine
 require("plugins.indent-blankline") -- ./indent-blankline.lua -- Indent Blankline
 require("plugins.treesitter")       -- ./treesitter.lua       -- Treesitter
---require("plugins.mini-animate")     -- ./mini-animate         -- [Mini] Animate
 
 -- 引入插件配置 (选项式)
 local neo_tree_config = require("plugins.neotree").config -- ./neotree.lua -- Neotree
+local marks_config = require("plugins.marks").config      -- ./marks.lua   -- Marks
 
 -- 初始化插件
 require("kitty-scrollback").setup() -- Kitty Scrollback
 require("lualine").setup()          -- Lualine
 require("colorizer").setup()        -- Colorizer
---require("toggleterm").setup()       -- ToggleTerm
 
 -- 应用插件配置 (选项式)
 require("neo-tree").setup(neo_tree_config)
+require("marks").setup(marks_config)
 
 -- 启动无法自动启动的插件
 vim.defer_fn(function()

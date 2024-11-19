@@ -1,5 +1,6 @@
 -- 引入插件配置 (选项式)
-local neo_tree_config = require("plugins.neotree").config
+local neo_tree_config = require("plugins.neotree").config -- ./neotree.lua -- Neotree
+local marks_config = require("plugins.marks").config      -- ./marks.lua   -- Marks
 
 --------------------
 
@@ -117,6 +118,13 @@ vim.api.nvim_set_keymap("v", "d", "\"_d", { noremap = true, silent = true })
 -- 普通模式下按 p 开始录制宏
 vim.api.nvim_set_keymap("n", "p", "q", { noremap = true, silent = true })
 
+-- 普通模式下按 ; 跳转到标记
+vim.api.nvim_set_keymap("n", ";", "`", { noremap = true, silent = true })
+-- 普通模式下按 Ctrl + ; 跳转到标记所在行开头
+vim.api.nvim_set_keymap("n", "<C-;>", "'", { noremap = true, silent = true })
+-- 普通模式下按 : 添加标记
+vim.api.nvim_set_keymap("n", ":", "m", { noremap = true, silent = true })
+
 -- 普通模式下按 f 打开/关闭 Neotree
 vim.api.nvim_set_keymap("n", "f", ":Neotree toggle<CR>", { noremap = true, silent = true })
 -- 普通模式下按 F 设置根目录并聚焦 Neotree
@@ -149,13 +157,19 @@ vim.api.nvim_set_keymap("n", "\\", ":MinimapToggle<CR>", { noremap = true, silen
 -- 普通模式下按 ` 执行 ALE 修复
 vim.api.nvim_set_keymap("n", "`", ":ALEFix<CR>", { noremap = true })
 
--- 普通模式下按 ' 打开/关闭 ToggleTerm 终端 (水平)
---vim.api.nvim_set_keymap("n", "'", ":ToggleTerm direction=horizontal size=15<CR>", { noremap = true, silent = true })
--- 普通模式下按 " 打开/关闭 ToggleTerm 终端 (垂直)
---vim.api.nvim_set_keymap("n", "\"", ":ToggleTerm direction=vertical size=65<CR>", { noremap = true, silent = true })
+-- Marks 的键位绑定
+marks_config.mappings = {
+    prev = "<C-S-;>",     -- 跳转到缓冲区内的上一个标记
+    next = "<C-;>",       -- 跳转到缓冲区内的下一个标记
+
+    delete = "d;",        -- 删除标记
+    delete_line = "d:",   -- 删除当前行的所有标记
+    delete_buf = "d<C-;>" -- 删除当前缓冲区内的所有标记
+}
 
 --------------------
 
 -- 应用插件配置
 require("neo-tree").setup(neo_tree_config)
+require("marks").setup(marks_config)
 
