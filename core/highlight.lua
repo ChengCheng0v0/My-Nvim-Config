@@ -16,9 +16,6 @@ vim.cmd.colorscheme("catppuccin")
 
 ---- 自定义
 
--- 分割线
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#89b4fa", bg = "NONE" })
-
 -- 彩虹🌈
 vim.api.nvim_set_hl(0, "RainbowRed", { fg = _G.palette.red })
 vim.api.nvim_set_hl(0, "RainbowYellow", { fg = _G.palette.yellow })
@@ -27,4 +24,12 @@ vim.api.nvim_set_hl(0, "RainbowOrange", { fg = _G.palette.peach })
 vim.api.nvim_set_hl(0, "RainbowGreen", { fg = _G.palette.green })
 vim.api.nvim_set_hl(0, "RainbowViolet", { fg = _G.palette.mauve })
 vim.api.nvim_set_hl(0, "RainbowCyan", { fg = _G.palette.sapphire })
+
+-- 分割线
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#89b4fa", bg = "NONE" })
+
+-- Git Gutter
+vim.api.nvim_set_hl(0, "GitGutterAdd", { fg = _G.palette.green })
+vim.api.nvim_set_hl(0, "GitGutterChange", { fg = _G.palette.yellow })
+vim.api.nvim_set_hl(0, "GitGutterDelete", { fg = _G.palette.red })
 

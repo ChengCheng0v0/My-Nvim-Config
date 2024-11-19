@@ -8,6 +8,9 @@ vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undo") -- 设置撤销文�
 vim.opt.ignorecase = true -- 大小写始终不敏感
 vim.opt.smartcase = true -- 智能模式 (有大写时敏感，否则不敏感)
 
+-- 更新延迟
+vim.opt.updatetime = 100
+
 ---- 外观
 
 -- 启用终端中的 24 位颜色支持
@@ -21,13 +24,13 @@ vim.opt.relativenumber = true -- 相对行号
 vim.opt.cursorline = true
 
 -- 始终显示符号列
-vim.opt.signcolumn = "yes:3"
+vim.opt.signcolumn = "yes:4"
 
 -- 滚动时预留三行空白
-vim.o.scrolloff = 3
+vim.opt.scrolloff = 3
 
 -- 分割线填充
-vim.o.fillchars = "vert:│,horiz:─"
+vim.opt.fillchars = "vert:│,horiz:─"
 
 ---- 编辑
 
