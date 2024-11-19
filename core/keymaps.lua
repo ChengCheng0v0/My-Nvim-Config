@@ -135,11 +135,11 @@ neo_tree_config.window.mappings = {
     ["."] = "",                 -- 解绑 .
     ["w"] = "",                 -- 解绑 w
 
-    ["i"] = "move_up",          -- 上移
-    ["k"] = "move_down",        -- 下移
+    ["i"] = "move_cursor_up",   -- 上移
+    ["k"] = "move_cursor_down", -- 下移
     ["j"] = "prev_source",      -- 切换到上一个目录源
     ["l"] = "next_source",      -- 切换到下一个目录源
- 
+
     ["z"] = "expand_all_nodes", -- 展开所有节点
     ["Z"] = "close_all_nodes",  -- 关闭所有节点
 }
