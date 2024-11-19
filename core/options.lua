@@ -24,7 +24,10 @@ vim.opt.relativenumber = true -- 相对行号
 vim.opt.cursorline = true
 
 -- 始终显示符号列
-vim.opt.signcolumn = "yes:4"
+vim.opt.signcolumn = "yes:3"
+
+-- 状态列格式
+vim.opt.statuscolumn = "%3r ┇ %s┇  "
 
 -- 滚动时预留三行空白
 vim.opt.scrolloff = 3
