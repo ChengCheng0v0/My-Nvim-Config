@@ -20,8 +20,8 @@ vim.opt.relativenumber = true -- 相对行号
 -- 高亮光标所在行
 vim.opt.cursorline = true
 
--- 自动显示符号列
-vim.opt.signcolumn = "auto"
+-- 始终显示符号列
+vim.opt.signcolumn = "yes:3"
 
 -- 滚动时预留三行空白
 vim.o.scrolloff = 3

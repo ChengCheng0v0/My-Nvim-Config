@@ -162,6 +162,7 @@ require("lualine").setup({
                 "tabs",
                 mode = 1,
                 path = 0,
+                max_length = vim.o.columns * 0.7,
                 tabs_color = {
                     active = {
                         fg = _G.palette.mantle,

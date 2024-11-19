@@ -4,6 +4,7 @@ local Plug = vim.fn["plug#"]
 vim.call("plug#begin")
     Plug ("nvim-lua/plenary.nvim")
     Plug ("MunifTanjim/nui.nvim")
+    Plug ("rcarriga/nvim-notify")
     Plug ("lambdalisue/suda.vim")
     Plug ("nvim-tree/nvim-web-devicons")
     Plug ("catppuccin/nvim")                    -- 再次声明以确保其作用域
@@ -27,6 +28,7 @@ vim.call("plug#end")
 require("plugins.options") -- ./options.lua
 
 -- 加载插件配置
+require("plugins.notify")           -- ./notify.lua           -- Notify
 require("plugins.lualine")          -- ./lualine.lua          -- Lualine
 require("plugins.indent-blankline") -- ./indent-blankline.lua -- Indent Blankline
 require("plugins.treesitter")       -- ./treesitter.lua       -- Treesitter
