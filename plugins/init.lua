@@ -6,7 +6,6 @@ vim.call("plug#begin")
     Plug ("MunifTanjim/nui.nvim")
     Plug ("lambdalisue/suda.vim")
     Plug ("nvim-tree/nvim-web-devicons")
-    Plug ("catppuccin/nvim")
     Plug ("nvim-treesitter/nvim-treesitter")
     Plug ("dense-analysis/ale")
     Plug ("wakatime/vim-wakatime")
@@ -48,7 +47,4 @@ require("marks").setup(marks_config)
 vim.defer_fn(function()
     vim.cmd("COQnow --shut-up") -- COQ
 end, 20) -- 延迟执行以确保插件加载完成
-
--- 应用主题
-vim.cmd.colorscheme("catppuccin")
 

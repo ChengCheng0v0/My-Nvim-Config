@@ -1,7 +1,3 @@
--- Catppuccin 主题
-require("catppuccin").setup({ flavour = "mocha" }) -- 可选 "latte", "frappe", "macchiato", "mocha"
-_G.palette = require("catppuccin.palettes").get_palette("mocha") -- 全局调色板
-
 -- ALE
 vim.g.ale_lint_on_save = 1 -- 保存时进行 lint 检查
 vim.g.ale_lint_on_text_changed = "always" -- 内容改变时进行 lint 检查
