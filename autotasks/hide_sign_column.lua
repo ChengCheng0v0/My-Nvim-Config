@@ -2,6 +2,7 @@
 local non_signcolumn_buftypes = {
     "nofile",
     "neo-tree",
+    "neo-tree-popup",
     "minimap",
     "terminal",
 }
@@ -21,4 +22,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
         end
     end,
 })
+
+-- 导出部分变量以供其它模块使用
+return {
+    non_signcolumn_buftypes = non_signcolumn_buftypes,
+}
 
