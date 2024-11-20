@@ -171,7 +171,7 @@ require("lualine").setup({
                     },
                     inactive = {
                         fg = _G.palette.pink,
-                        bg = _G.palette.mantle,
+                        bg = _G.palette.surface0,
                     },
                 },
             },
@@ -237,7 +237,7 @@ require("lualine").setup({
                     align = "left",
                 },
                 color = {
-                    fg = _G.palette.red,
+                    fg = _G.palette.mauve,
                     bg = _G.palette.surface0,
                 },
 
