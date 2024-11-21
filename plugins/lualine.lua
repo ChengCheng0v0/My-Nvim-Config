@@ -203,7 +203,22 @@ require("lualine").setup({
         },
     },
     winbar = {
-        lualine_a = {},
+        lualine_a = {
+            {
+                function()
+                    return require("utils.session_manager").get_current_session_name()
+                end,
+                icon = {
+                    " ",
+                    align = "left",
+                },
+                color = {
+                    fg = _G.palette.mantle,
+                    bg = _G.palette.teal,
+                    gui = "bold",
+                },
+            },
+        },
         lualine_b = {
             {
                 function()

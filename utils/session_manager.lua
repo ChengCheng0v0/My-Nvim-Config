@@ -51,7 +51,7 @@ M.save_session = function(save_name)
 
     -- 关闭所有 Neotree 窗口
     vim.cmd("tabdo Neotree close")
-    -- 关闭所有 Neotree 窗口
+    -- 关闭所有 Minimap 窗口
     vim.cmd("tabdo MinimapClose")
 
     -- 回到原来的标签页
@@ -74,6 +74,48 @@ M.save_session = function(save_name)
     --vim.notify(M.flag.current_session_name, "warn", { title = module_format_name_endspace .. "Debug" })
     -- 重置 Flag
     M.flag.no_name = false
+end
+
+-- 加载会话
+M.load_session = function(session_name, deep_load)
+    -- 检查参数是否合法
+    if session_name == nil or session_name == "" then
+        vim.notify("未传入 session_name 参数或传入的值为空。", "error", { title = module_format_name_endspace .. "会话加载失败" })
+        return
+    elseif vim.loop.fs_stat(vim.fn.expand(session_path .. "/" .. session_name .. ".vim")) == nil then
+        vim.notify("指定的会话文件不存在。", "error", { title = module_format_name_endspace .. "会话加载失败" })
+        return
+    end
+
+    -- 加载路径
+    local load_path = session_path .. "/" .. session_name .. ".vim"
+
+    -- 检查是否需要深度加载
+    if deep_load == true then
+        vim.notify("即将执行深度加载，再见...\n\n" .. load_path, "warn", { title = module_format_name_endspace .. "准备深度加载" })
+
+        vim.defer_fn(function()
+            vim.cmd("bufdo bdelete") -- 清空所有缓冲区
+            vim.cmd("tabdo only") -- 关闭所有分屏
+            vim.cmd("source $MYVIMRC") -- 重新加载配置文件
+
+            -- 加载会话文件
+            vim.cmd("source " .. load_path)
+
+            vim.notify(load_path, "info", { title = module_format_name_endspace .. "会话深度加载成功" })
+
+            -- 更新当前会话名
+            M.flag.current_session_name = session_name
+        end, 3000)
+    else
+        -- 加载会话文件
+        vim.cmd("source " .. load_path)
+
+        vim.notify(load_path, "info", { title = module_format_name_endspace .. "会话加载成功" })
+
+        -- 更新当前会话名
+        M.flag.current_session_name = session_name
+    end
 end
 
 -- 获取当前会话名

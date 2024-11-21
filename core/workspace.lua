@@ -1,7 +1,7 @@
 -- 在无参数启动时自动恢复会话
 if vim.fn.argc() == 0 and vim.fn.filereadable(vim.fn.expand("~/.local/share/nvim/session/first_session.vim")) == 1 then
-    -- 加载会话文件
-    vim.cmd("source ~/.local/share/nvim/session/first_session.vim")
+    -- 加载上次会话
+    require("utils.session_manager").load_session("first_session", false)
 end
 
 vim.defer_fn(function()
