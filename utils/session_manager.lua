@@ -11,7 +11,12 @@ local session_path = "~/.local/share/nvim/session"
 -- Flags
 M.flag = {
     current_session_name = "No Session", -- 当前会话名
-    no_name = false                      -- 未指定保存文件名
+    no_name = false,                     -- 未指定保存文件名
+
+    management_session_menu = {
+        win = nil,
+        buf = nil,
+    }
 }
 
 -- 保存会话
@@ -115,6 +120,150 @@ M.load_session = function(session_name, deep_load)
 
         -- 更新当前会话名
         M.flag.current_session_name = session_name
+    end
+end
+
+-- 管理会话
+M.management_session_menu = {}
+M.management_session = function()
+    -- 获取屏幕尺寸
+    local screen_width = vim.o.columns
+    local screen_height = vim.o.lines
+
+    -- 定义浮动窗口尺寸
+    local width = 65
+    local height = 20
+
+    -- 计算窗口居中位置
+    local row = math.floor((screen_height - height) / 2)
+    local col = math.floor((screen_width - width) / 2)
+
+    -- 创建一个新的缓冲区
+    local buf = vim.api.nvim_create_buf(false, true)
+
+    -- 定义浮动窗口的显示选项
+    local opts = {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = row,
+        col = col,
+        style = "minimal",
+        border = "rounded", -- 添加边框样式，可选 rounded、single、double
+    }
+
+    -- 将会话列表填充为选单选项
+    local menu_items = {}
+    local menu_item_id = 1
+    for session_name in io.popen("find " .. session_path .. "/ -type f -printf '%f\n' | grep '.vim'"):lines() do
+        table.insert(menu_items, "(" .. menu_item_id .. ") " .. string.gsub(session_name, "%.vim$", ""))
+        menu_item_id = menu_item_id + 1
+    end
+
+    -- 定义选项操作
+    M.management_session_menu.actions = {}
+    local menu_action_id = 1
+    for session_name in io.popen("find " .. session_path .. "/ -type f -printf '%f\n' | grep '.vim'"):lines() do
+        -- 加载会话
+        M.management_session_menu.actions[menu_action_id .. "l"] = function()
+            M.load_session(string.gsub(session_name, "%.vim$", ""), false)
+        end
+
+        -- 深度加载会话
+        M.management_session_menu.actions[menu_action_id .. "L"] = function()
+            M.load_session(string.gsub(session_name, "%.vim$", ""), true)
+        end
+
+        menu_action_id = menu_action_id + 1
+    end
+
+    -- 渲染窗口内容
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, menu_items)
+    vim.api.nvim_buf_set_lines(buf, -1, -1, false, vim.fn["repeat"]({ "" }, height - (#menu_items + 3)))
+    vim.api.nvim_buf_set_lines(buf, -1, -1, false, { string.rep("─", width) })
+    vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "(?)l : 加载会话 | (?)L : 深度加载会话" })
+    vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "q : 退出菜单" })
+
+    -- 打开浮动窗口
+    local win = vim.api.nvim_open_win(buf, true, opts)
+
+    -- 禁用符号列
+    vim.wo.signcolumn = "no"
+
+    -- 高亮选项序号
+    for i, line in ipairs(menu_items) do
+        vim.api.nvim_buf_add_highlight(buf, -1, "Number", i - 1, 0, 3) -- 高亮前3个字符
+    end
+
+    -- 匹配并高亮关键字
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false) -- 获取整个缓冲区的内容
+    for row, line in ipairs(lines) do
+        if line:match("─") then
+            for start, finish in line:gmatch("()─()") do
+                vim.api.nvim_buf_add_highlight(buf, -1, "WinSeparator", row - 1, start - 1, finish)
+            end
+        end
+        if line:match("%(%?%)") then
+            for start, finish in line:gmatch("()%(%?%)()") do
+                vim.api.nvim_buf_add_highlight(buf, -1, "Number", row - 1, start - 1, finish)
+            end
+        end
+        if line:match(". :") then
+            for start, finish in line:gmatch("().() :") do
+                vim.api.nvim_buf_add_highlight(buf, -1, "Keyword", row - 1, start - 1, finish)
+            end
+        end
+    end
+
+    -- 绑定会话操作快捷键
+    for i, _ in ipairs(menu_items) do
+        local key = tostring(i) -- 将索引转换为字符
+
+        -- 加载会话
+        vim.api.nvim_buf_set_keymap(
+            buf, "n", key .. "l",
+            string.format(":lua require'utils.session_manager'.management_session_menu.handle_selection('%dl')<CR>", i),
+            { noremap = true, silent = true }
+        )
+
+        -- 深度加载会话
+        vim.api.nvim_buf_set_keymap(
+            buf, "n", key .. "L",
+            string.format(":lua require'utils.session_manager'.management_session_menu.handle_selection('%dL')<CR>", i),
+            { noremap = true, silent = true }
+        )
+
+        -- 退出菜单
+        vim.api.nvim_buf_set_keymap(
+            buf, "n", "q",
+            string.format(":q | :lua vim.notify(' …〒_〒… ｏ′-一┳═┻︻▄', 'info', { title = '" .. module_format_name_endspace .. "菜单已关闭' })<CR>"),
+            { noremap = true, silent = true }
+        )
+    end
+
+    -- 禁用其它操作
+    vim.api.nvim_buf_set_option(buf, "modifiable", false)
+    vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
+    vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+
+    -- 存储窗口 ID 和缓冲区 ID
+    M.flag.management_session_menu.win = win
+    M.flag.management_session_menu.buf = buf
+
+    M.management_session_menu.handle_selection = function(choice)
+        -- 关闭浮动窗口
+        local win = M.flag.management_session_menu.win
+        if win and vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_close(win, true)
+        end
+
+        -- 调用对应的操作
+        local actions = M.management_session_menu.actions
+        if actions and actions[choice] then
+            actions[choice]()
+        else
+            vim.notify("无效选项。", "error", { title = module_format_name_endspace .. "操作执行失败" })
+        end
     end
 end
 

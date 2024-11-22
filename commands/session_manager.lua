@@ -22,3 +22,10 @@ end, {
     nargs = 1
 })
 
+-- 管理会话
+vim.api.nvim_create_user_command("SMm", function()
+    session_manager.management_session()
+end, {
+    nargs = 0
+})
+
