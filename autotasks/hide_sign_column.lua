@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
         -- 默认显示符号列
         if vim.bo.buftype == "" then
             vim.wo.signcolumn = "yes:3"
-            vim.wo.statuscolumn = "%3r ┇ %s┇  "
+            vim.wo.statuscolumn = "%3l·%-2r─┇ %s┇  "
         -- 对指定类型的缓冲区隐藏符号列
         elseif vim.tbl_contains(non_signcolumn_buftypes, vim.bo.buftype) then
             vim.wo.signcolumn = "no"

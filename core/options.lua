@@ -27,7 +27,7 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes:3"
 
 -- 状态列格式
-vim.opt.statuscolumn = "%3r ┇ %s┇  "
+vim.opt.statuscolumn = "%3l·%-2r─┇ %s┇  "
 
 -- 滚动时预留三行空白
 vim.opt.scrolloff = 3
