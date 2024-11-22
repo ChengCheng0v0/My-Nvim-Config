@@ -5,9 +5,11 @@ vim.call("plug#begin")
 vim.fn["plug#"] ("catppuccin/nvim")
 vim.call("plug#end")
 
--- 设置风格
-require("catppuccin").setup({ flavour = "mocha" }) -- 可选 "latte", "frappe", "macchiato", "mocha"
-
+-- 设置 Catppuccin
+require("catppuccin").setup({
+    flavour = "mocha", -- 可选 "latte", "frappe", "macchiato", "mocha"
+    transparent_background = true, -- 启用透明背景
+})
 -- 全局调色板
 _G.palette = require("catppuccin.palettes").get_palette("mocha")
 
