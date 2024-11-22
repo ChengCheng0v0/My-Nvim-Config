@@ -89,6 +89,10 @@ vim.api.nvim_set_keymap("n", "T", ":tabclose<CR>", { noremap = true, silent = tr
 vim.api.nvim_set_keymap("n", ",", ":tabprevious<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", ".", ":tabnext<CR>", { noremap = true, silent = true })
 
+-- 普通模式下按 </> 移动标签页
+vim.api.nvim_set_keymap("n", "<", ":tabmove -1<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", ">", ":tabmove +1<CR>", { noremap = true, silent = true })
+
 -- 普通模式下按 z 撤销
 vim.api.nvim_set_keymap("n", "z", "u", { noremap = true, silent = true })
 -- 普通模式下按 Z 重做

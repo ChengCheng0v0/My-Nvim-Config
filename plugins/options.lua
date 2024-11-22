@@ -24,5 +24,6 @@ vim.g.gitblame_message_when_not_committed = "Oh please, commit this!" -- 自定�
 vim.g.gitblame_max_commit_summary_length = 50 -- 最大 Commit 摘要长度
 
 -- Git Gutter
+vim.g.gitgutter_map_keys = 0 -- 不要偷偷给我塞没用的键绑定求求你了 6_6
 vim.g.gitgutter_sign_priority = 10 -- 较高符号列优先级
 
