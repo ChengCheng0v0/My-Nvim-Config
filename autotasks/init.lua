@@ -4,4 +4,5 @@ require("autotasks.colorizer_attach")           -- ./colorizer_attach.lua       
 require("autotasks.refresh_neotree")            -- ./refresh_neotree.lua            -- 定时刷新 Neotree
 require("autotasks.hide_sign_column")           -- ./hide_sign_column.lua           -- 隐藏指定缓冲区内的符号列
 --require("autotasks.status_column_style_toggle") -- ./status_column_style_toggle.lua -- 根据模式切换状态列样式
+require("autotasks.toggle_im")                  -- ./toggle_im.lua                  -- 自动切换 Fcitx 5 输入法状态
 
