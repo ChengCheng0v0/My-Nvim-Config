@@ -16,6 +16,9 @@ vim.opt.updatetime = 100
 -- 启用终端中的 24 位颜色支持
 vim.opt.termguicolors = true
 
+-- 禁用自动换行
+vim.opt.wrap = false
+
 -- 显示行号
 vim.opt.number = true -- 绝对行号
 vim.opt.relativenumber = true -- 相对行号
