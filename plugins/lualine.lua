@@ -162,7 +162,7 @@ require("lualine").setup({
                 "tabs",
                 mode = 1,
                 path = 0,
-                max_length = vim.o.columns * 0.7,
+                max_length = vim.o.columns,
                 tabs_color = {
                     active = {
                         fg = _G.palette.mantle,
@@ -188,6 +188,8 @@ require("lualine").setup({
                     fg = _G.palette.pink,
                     bg = _G.palette.surface0,
                 },
+
+                cond = function() return vim.o.columns > 150 end,
             },
         },
         lualine_z = {
@@ -199,6 +201,8 @@ require("lualine").setup({
                     fg = _G.palette.mantle,
                     bg = _G.palette.pink,
                 },
+
+                cond = function() return vim.o.columns > 150 end,
             },
         },
     },
