@@ -23,6 +23,7 @@ vim.call("plug#begin")
     Plug ("ms-jpq/coq.artifacts")
     Plug ("ms-jpq/coq.thirdparty")
     Plug ("chentoast/marks.nvim")
+    Plug ("MeanderingProgrammer/render-markdown.nvim")
 vim.call("plug#end")
 
 -- 加载插件选项
