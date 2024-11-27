@@ -119,6 +119,13 @@ vim.api.nvim_set_keymap("v", "c", "y", { noremap = true, silent = true })
 -- 可视模式下按 d 删除
 vim.api.nvim_set_keymap("v", "d", "\"_d", { noremap = true, silent = true })
 
+-- 普通模式下按 Tab 移动光标至屏幕中央
+vim.api.nvim_set_keymap("n", "<Tab>", "M", { noremap = true, silent = true })
+-- 普通模式下按 <Tab>i 移动光标至屏幕顶部
+vim.api.nvim_set_keymap("n", "<Tab>i", "H", { noremap = true, silent = true })
+-- 普通模式下按 <Tab>k 移动光标至屏幕底部
+vim.api.nvim_set_keymap("n", "<Tab>k", "L", { noremap = true, silent = true })
+
 -- 普通模式下按 p 开始录制宏
 vim.api.nvim_set_keymap("n", "p", "q", { noremap = true, silent = true })
 

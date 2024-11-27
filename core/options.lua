@@ -11,6 +11,9 @@ vim.opt.smartcase = true -- 智能模式 (有大写时敏感，否则不敏感)
 -- 更新延迟
 vim.opt.updatetime = 100
 
+-- 组合键超时延迟
+vim.opt.timeoutlen = 120
+
 ---- 外观
 
 -- 启用终端中的 24 位颜色支持
