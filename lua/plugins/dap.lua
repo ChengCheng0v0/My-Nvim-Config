@@ -29,7 +29,7 @@ return {
       -- [[ LazyVim End ]]
 
       local dap = require("dap")
-      local dapui = require("dapui")
+      -- local dapui = require("dapui")
 
       local notify_title = "DAP"
 
