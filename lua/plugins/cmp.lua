@@ -1,3 +1,8 @@
+-- Disable this config
+if true then
+  return {}
+end
+
 return {
   {
     "hrsh7th/nvim-cmp",
