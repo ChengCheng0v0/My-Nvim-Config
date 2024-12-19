@@ -39,7 +39,7 @@ wk.add({
   { "<leader>ut", group = "Toggle Colorscheme", icon = { icon = "◑", color = "purple" } },
 
   -- Catppuccin
-  { "<leader>ut1", group = "Catppuccin", icon = "🐱" },
+  { "<leader>ut1", group = "Catppuccin", icon = "☕" },
   {
     "<leader>ut11",
     function()
